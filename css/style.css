@@ -765,15 +765,11 @@ p { color: var(--text); }
   box-shadow: var(--shadow-lg);
 }
 .about__media svg { width: 100%; height: 100%; display: block; }
-.about__media-glow {
-  position: absolute;
-  inset: auto -20% -30% auto;
-  width: 260px; height: 260px;
-  border-radius: 50%;
-  background: var(--accent);
-  filter: blur(70px);
-  opacity: 0.25;
-  pointer-events: none;
+.about__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .about__badge {
@@ -1908,4 +1904,129 @@ a.contact__item:hover {
 }
 @media (max-width: 420px) {
   .gallery__grid { gap: 0.6rem; }
+}
+
+/* =========================================================
+   21. FLOATING ACTIONS (WhatsApp + Back to top)
+   ========================================================= */
+.floating-actions {
+  position: fixed;
+  right: clamp(1rem, 2vw, 1.5rem);
+  bottom: clamp(1rem, 2vw, 1.5rem);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.65rem;
+  pointer-events: none;
+}
+
+.floating-btn {
+  pointer-events: auto;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid transparent;
+  transition: transform var(--transition), box-shadow var(--transition),
+              background-color var(--transition), opacity var(--transition);
+}
+
+.floating-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.22);
+}
+
+.floating-btn:active { transform: translateY(0); }
+
+/* Hide the text label on small screens — show icon-only */
+.floating-btn__label { white-space: nowrap; }
+
+@media (max-width: 560px) {
+  .floating-btn {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    justify-content: center;
+    gap: 0;
+  }
+  .floating-btn__label {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0);
+    white-space: nowrap; border: 0;
+  }
+}
+
+/* --- WhatsApp button --- */
+.floating-btn--whatsapp {
+  background: #25D366;
+}
+.floating-btn--whatsapp:hover {
+  background: #1ebe5b;
+  color: #fff;
+}
+
+/* Subtle pulse ring on the WhatsApp button */
+.floating-btn--whatsapp::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: #25D366;
+  opacity: 0.35;
+  z-index: -1;
+  animation: pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.95); opacity: 0.45; }
+  70%  { transform: scale(1.25); opacity: 0; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+
+/* --- Back to top button --- */
+.floating-btn--top {
+  background: var(--brand-navy);
+  color: #fff;
+}
+.floating-btn--top:hover {
+  background: var(--brand-blue);
+  color: #fff;
+}
+[data-theme="dark"] .floating-btn--top {
+  background: var(--bg-elev);
+  border-color: var(--border);
+  color: var(--text);
+}
+[data-theme="dark"] .floating-btn--top:hover {
+  background: var(--brand-blue);
+  color: #fff;
+}
+
+/* Hidden state — starts hidden, JS reveals it after scrolling */
+.floating-btn--top[hidden] { display: none; }
+
+/* Show animation when it appears */
+.floating-btn--top.is-visible {
+  animation: fade-slide-in 240ms ease both;
+}
+
+@keyframes fade-slide-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .floating-btn--whatsapp::before { animation: none; opacity: 0.25; }
+  .floating-btn--top.is-visible { animation: none; }
 }

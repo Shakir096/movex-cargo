@@ -327,7 +327,7 @@
     /* Pricing model — tweak numbers as needed. */
     const PRICING = {
       base: {
-        air: 1800,   /* PKR per kg for air */
+        air: 1000,   /* PKR per kg for air */
         sea: 450     /* PKR per kg for sea (min 5 kg billing) */
       },
       destination: {
@@ -609,3 +609,31 @@
   })();
 
 })();
+
+  /* =========================================================
+     9. FLOATING ACTIONS — back-to-top visibility + click
+     ========================================================= */
+  (function floatingActions() {
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+
+    const SHOW_AFTER = 500; /* px scrolled before the button appears */
+
+    const onScroll = () => {
+      const show = window.scrollY > SHOW_AFTER;
+      if (show && btn.hidden) {
+        btn.hidden = false;
+        btn.classList.add('is-visible');
+      } else if (!show && !btn.hidden) {
+        btn.hidden = true;
+        btn.classList.remove('is-visible');
+      }
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
