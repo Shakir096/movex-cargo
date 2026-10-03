@@ -98,7 +98,7 @@
   <!-- ===================== MAIN ===================== -->
   <main id="main">
 
-    <!-- ===================== HERO ===================== -->
+   <!-- ===================== HERO ===================== -->
     <section id="home" class="hero" aria-labelledby="hero-title">
       <div class="hero__bg" aria-hidden="true">
         <span class="hero__grid"></span>
@@ -125,8 +125,8 @@
           </span>
 
           <h1 id="hero-title" class="hero__title">
-           MoveX Cargo <span class="hero__title-accent"> </span><br />
-           From Pakistan To The  <span class="hero__title-accent">World</span>
+            MoveX Cargo<br />
+            From Pakistan To The <span class="hero__title-accent">World</span>
           </h1>
 
           <p class="hero__lead">
@@ -166,58 +166,131 @@
         </div>
 
         <div class="hero__visual" aria-hidden="true">
-          <div class="hero__card hero__card--main">
+
+          <div class="hero__card hero__card--feed">
+
+            <!-- Card header -->
             <div class="hero__card-head">
               <span class="hero__dot hero__dot--green"></span>
               <span class="hero__dot hero__dot--amber"></span>
               <span class="hero__dot hero__dot--red"></span>
-              <span class="hero__card-title">Live parcel</span>
+              <span class="hero__card-title">Recent activity</span>
             </div>
 
-            <div class="hero__card-row">
-              <span class="hero__card-label">Tracking ID</span>
-              <span class="hero__card-value">MVX-RWP-4820-UK</span>
+            <!-- Live indicator -->
+            <div class="feed__live">
+              <span class="feed__pulse" aria-hidden="true"></span>
+              <span class="feed__live-text">Live parcel updates</span>
             </div>
 
-            <div class="hero__progress" role="presentation">
-              <span class="hero__progress-bar" style="--progress: 72%"></span>
-            </div>
+            <!-- Rotating list -->
+            <ul class="feed__list" id="feed-list">
 
-            <ol class="hero__steps">
-              <li class="hero__step is-done">
-                <span class="hero__step-dot"></span>
-                Picked up
+              <li class="feed__item is-active">
+                <span class="feed__check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                       stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                       stroke-linejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </span>
+                <div class="feed__text">
+                  <strong>Sara in Islamabad</strong>
+                  <span>→ London · 3 kg</span>
+                </div>
               </li>
-              <li class="hero__step is-done">
-                <span class="hero__step-dot"></span>
-                In transit
-              </li>
-              <li class="hero__step is-current">
-                <span class="hero__step-dot"></span>
-                Out for delivery
-              </li>
-              <li class="hero__step">
-                <span class="hero__step-dot"></span>
-                Delivered
-              </li>
-            </ol>
 
-            <div class="hero__card-foot">
+              <li class="feed__item">
+                <span class="feed__check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                       stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                       stroke-linejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </span>
+                <div class="feed__text">
+                  <strong>Ahmed in Rawalpindi</strong>
+                  <span>→ Toronto · 8 kg</span>
+                </div>
+              </li>
+
+              <li class="feed__item">
+                <span class="feed__check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                       stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                       stroke-linejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </span>
+                <div class="feed__text">
+                  <strong>Fatima in Islamabad</strong>
+                  <span>→ Dubai · 2 kg</span>
+                </div>
+              </li>
+
+              <li class="feed__item">
+                <span class="feed__check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                       stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                       stroke-linejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </span>
+                <div class="feed__text">
+                  <strong>Rizwan in Rawalpindi</strong>
+                  <span>→ New York · 5 kg</span>
+                </div>
+              </li>
+
+              <li class="feed__item">
+                <span class="feed__check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                       stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                       stroke-linejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </span>
+                <div class="feed__text">
+                  <strong>Ayesha in Islamabad</strong>
+                  <span>→ Manchester · 4 kg</span>
+                </div>
+              </li>
+
+              <li class="feed__item">
+                <span class="feed__check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                       stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                       stroke-linejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </span>
+                <div class="feed__text">
+                  <strong>Bilal in Rawalpindi</strong>
+                  <span>→ Berlin · 6 kg</span>
+                </div>
+              </li>
+
+            </ul>
+
+            <!-- Card footer -->
+            <div class="hero__card-foot hero__card-foot--feed">
               <div>
-                <span class="hero__card-label">ETA</span>
-                <span class="hero__card-value">Tue, 4:20 PM · London</span>
+                <span class="hero__card-label">Today</span>
+                <span class="hero__card-value">128 parcels shipped</span>
               </div>
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none"
                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                    stroke-linejoin="round">
-                <path d="M1 16h13V6H1z" />
-                <path d="M14 9h4l4 4v3h-8z" />
-                <circle cx="6" cy="18.5" r="2" />
-                <circle cx="18" cy="18.5" r="2" />
+                <path d="M17.8 19.2 16 11l3.5-3.5a2.5 2.5 0 0 0-3.5-3.5L12.5 7.5
+                         4.3 5.7a1 1 0 0 0-.9 1.7l4.1 3.6-2.3 2.3-2.4-.6a1 1 0 0 0-1 1.6
+                         l2 1.5 1.5 2a1 1 0 0 0 1.6-1l-.6-2.4 2.3-2.3 3.6 4.1
+                         a1 1 0 0 0 1.7-.9z"/>
               </svg>
             </div>
+
           </div>
 
+          <!-- Floating badges -->
           <div class="hero__badge hero__badge--top">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none"
                  stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -236,6 +309,7 @@
             </svg>
             <span>On-time 99.4%</span>
           </div>
+
         </div>
 
       </div>

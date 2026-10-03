@@ -637,3 +637,51 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   })();
+
+    /* =========================================================
+     10. LIVE CUSTOMER FEED (rotating hero card)
+     ========================================================= */
+  (function liveFeed() {
+    const list = document.getElementById('feed-list');
+    if (!list) return;
+
+    const items = Array.from(list.querySelectorAll('.feed__item'));
+    if (items.length < 2) return;
+
+    const ROTATE_MS = 3200;   /* how long each item stays visible */
+    const FADE_MS   = 520;    /* must match the CSS transition duration */
+
+    let current = items.findIndex((el) => el.classList.contains('is-active'));
+    if (current < 0) current = 0;
+    items.forEach((el, i) => {
+      el.classList.toggle('is-active', i === current);
+    });
+
+    /* Respect reduced-motion — leave the first item visible, no rotation */
+    const prefersReduced = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    let paused = false;
+    list.addEventListener('mouseenter', () => { paused = true; });
+    list.addEventListener('mouseleave', () => { paused = false; });
+
+    function rotate() {
+      if (paused) { setTimeout(rotate, 600); return; }
+
+      const next = (current + 1) % items.length;
+      const outEl = items[current];
+      const inEl  = items[next];
+
+      outEl.classList.add('is-leaving');
+      outEl.classList.remove('is-active');
+
+      setTimeout(() => {
+        outEl.classList.remove('is-leaving');
+        inEl.classList.add('is-active');
+        current = next;
+      }, FADE_MS);
+    }
+
+    setInterval(rotate, ROTATE_MS);
+  })();
